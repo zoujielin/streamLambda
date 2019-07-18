@@ -77,7 +77,11 @@ public class StreamStudy {
         map1.forEach((key,value)->{System.out.printf("key是%s，value是%s", key, value);System.out.println();});
         map2.forEach((key,value)->{System.out.printf("key是%s，value是%s", key, value);System.out.println();});
         map3.forEach((key,value)->{System.out.printf("key是%s，value是%s", key, value);System.out.println();});
+        System.out.println("Optional使用");
         Optional<Integer> op=s2.stream().findAny();
         System.out.println("op:"+op.get());
+        System.out.println("--------------------");
+        System.out.println("skip(n)跳过前n个，limit(n)是取前n个");
+        stream.filter(e->e>1).skip(2).limit(1).forEach(System.out::println);
     }
 }
