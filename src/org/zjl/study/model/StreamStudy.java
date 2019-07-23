@@ -102,5 +102,6 @@ public class StreamStudy {
         System.out.println("skip(n)跳过前n个，limit(n)是取前n个");
         Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5);
         stream.filter(e -> e > 1).skip(2).limit(1).forEach(System.out::println);
+        List<Integer> llll=stream.filter(e -> e > 1).skip(2).limit(1).collect(Collectors.toList());
     }
 }
