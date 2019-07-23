@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 /**
  * stream流练习
  */
+@SuppressWarnings("Duplicates")
 public class StreamStudy {
     private int id;
     private String value;
