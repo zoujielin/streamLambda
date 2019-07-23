@@ -49,7 +49,7 @@ public class StreamStudy {
         //遍历list集合+过滤+排序
         System.out.println("遍历list集合+过滤+排序");
         s2.stream().filter(e -> e > 2).sorted(Comparator.reverseOrder()).forEach(e -> {
-            System.out.print("大于2逆序："+e+",");
+            System.out.print("大于2逆序：" + e + ",");
             s3.add(e);
         });
         System.out.println();
@@ -57,6 +57,14 @@ public class StreamStudy {
         //使用新list接收
         System.out.println("使用新list接收");
         List<Integer> s4 = s2.stream().map(Test::t2).filter(Test::check).collect(Collectors.toList());
+        List<Integer> s41 = s2.stream().map(e -> {
+            if (e > 2) {
+                e = 1;
+            } else if (e <= 1) {
+                e = 0;
+            }
+            return e;
+        }).filter(Test::check).collect(Collectors.toList());
         s4.stream().forEach(System.out::println);
         System.out.println("--------------------");
         //三种map接收
@@ -70,20 +78,29 @@ public class StreamStudy {
         streamStudyList1.add(str1);
         streamStudyList1.add(str2);
         streamStudyList1.add(str3);
-        Map<Integer, String> map1 =streamStudyList.stream().collect(Collectors.toMap(StreamStudy::getId, StreamStudy::getValue));
-        Map<Integer, StreamStudy> map2 =streamStudyList.stream().collect(Collectors.toMap(StreamStudy::getId, e->e));
-        Map<Integer, List<StreamStudy>> map3=streamStudyList1.stream().collect(Collectors.groupingBy(StreamStudy::getId));
+        Map<Integer, String> map1 = streamStudyList.stream().collect(Collectors.toMap(StreamStudy::getId, StreamStudy::getValue));
+        Map<Integer, StreamStudy> map2 = streamStudyList.stream().collect(Collectors.toMap(StreamStudy::getId, e -> e));
+        Map<Integer, List<StreamStudy>> map3 = streamStudyList1.stream().collect(Collectors.groupingBy(StreamStudy::getId));
         //遍历map1、map2、map3
         System.out.println("遍历map1、map2、map3");
-        map1.forEach((key,value)->{System.out.printf("key是%s，value是%s", key, value);System.out.println();});
-        map2.forEach((key,value)->{System.out.printf("key是%s，value是%s", key, value);System.out.println();});
-        map3.forEach((key,value)->{System.out.printf("key是%s，value是%s", key, value);System.out.println();});
+        map1.forEach((key, value) -> {
+            System.out.printf("key是%s，value是%s", key, value);
+            System.out.println();
+        });
+        map2.forEach((key, value) -> {
+            System.out.printf("key是%s，value是%s", key, value);
+            System.out.println();
+        });
+        map3.forEach((key, value) -> {
+            System.out.printf("key是%s，value是%s", key, value);
+            System.out.println();
+        });
         System.out.println("Optional使用");
-        Optional<Integer> op=s2.stream().findAny();
-        System.out.println("op:"+op.get());
+        Optional<Integer> op = s2.stream().findAny();
+        System.out.println("op:" + op.get());
         System.out.println("--------------------");
         System.out.println("skip(n)跳过前n个，limit(n)是取前n个");
-        Stream<Integer> stream=Stream.of(1,2,3,4,5);
-        stream.filter(e->e>1).skip(2).limit(1).forEach(System.out::println);
+        Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5);
+        stream.filter(e -> e > 1).skip(2).limit(1).forEach(System.out::println);
     }
 }
