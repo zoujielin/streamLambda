@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * stream流学习流
+ * stream流学习
  */
 public class Main {
     private int id;
