@@ -96,12 +96,20 @@ public class StreamStudy {
             System.out.println();
         });
         System.out.println("Optional使用");
-        Optional<Integer> op = s2.stream().findAny();
+        Optional<Integer> op = s2.stream().findAny();//搜了一下发现findAny并不是随机地选一个，
+        // 如果是数据较少，串行地情况下，一般会返回第一个结果，如果是并行的情况，那就不能确保是第一个。
         System.out.println("op:" + op.get());
         System.out.println("--------------------");
         System.out.println("skip(n)跳过前n个，limit(n)是取前n个");
         Stream<Integer> stream = Stream.of(1, 2, 3, 4, 5);
         stream.filter(e -> e > 1).skip(2).limit(1).forEach(System.out::println);
         List<Integer> llll=stream.filter(e -> e > 1).skip(2).limit(1).collect(Collectors.toList());
+       /** List<Person> result = list.stream()
+                .distinct()
+                .collect(toList());//去重*/
+       /**filter为过滤，x代表persons中的一个person；
+        persons.stream().filter(x -> "ahmook".equals(x.getName()))表示过滤出persons中名字为ahmook的person；
+        .findAny()表示将其中任意一个返回；
+        .orElse(null)表示如果一个都没找到返回null*/
     }
 }
